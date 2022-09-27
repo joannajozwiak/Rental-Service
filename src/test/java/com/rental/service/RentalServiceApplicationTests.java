@@ -40,12 +40,12 @@ class RentalServiceApplicationTests {
     }
 
     @Test
-    void testAddCar () {
+    void testAddCar() {
         //Given
         CarBase carBase = new CarBase();
         // When
-        Car car = new Car("BMW", "X3", 2022, "PZ1111",true);
-        Car car1 = new Car("BMW", "X7", 2022, "PZ12111",true);
+        Car car = new Car("BMW", "X3", 2022, "PZ1111", true);
+        Car car1 = new Car("BMW", "X7", 2022, "PZ12111", true);
         carBase.addCar(car);
         carBase.addCar(car1);
         // Then
@@ -68,12 +68,12 @@ class RentalServiceApplicationTests {
     void testRent() {
         //Given
         RentRequest rentRequest1 = new RentRequest(new User("Jan", "Nowak"), new CarDto("Audi", "Q7", 2020));
-        when(iAvailabiltyServiceMock.carAvailable(rentRequest1.getCarDto())).thenReturn (true);
+        when(iAvailabiltyServiceMock.carAvailable(rentRequest1.getCarDto())).thenReturn(true);
         //When
         RentalService rentalService = new RentalService(iAvailabiltyServiceMock, iRentalRepositoryMock, carBaseMock);
-        RentalDto rentalDto= rentalService.rent(rentRequest1);
+        RentalDto rentalDto = rentalService.rent(rentRequest1);
         //Then
-        assertEquals(true,rentalDto.isRented());
+        assertEquals(true, rentalDto.isRented());
 
 
     }

@@ -11,19 +11,19 @@ public class RentalService {
         this.carBase = carBase;
     }
 
-    public RentalDto rent (final RentRequest rentRequest) {
+    public RentalDto rent(final RentRequest rentRequest) {
         boolean isAvailable = iAvailabiltyService.carAvailable(rentRequest.getCarDto());
 
-        if (isAvailable){
+        if (isAvailable) {
             iRentalRepository.rentCar(rentRequest.getCarDto());
-            return new RentalDto(rentRequest.getUser(), rentRequest.getCarDto(),  true);
+            return new RentalDto(rentRequest.getUser(), rentRequest.getCarDto(), true);
         } else {
             System.out.println("Car " + rentRequest.getCarDto().getBrand() + " is unavaiable");
             return new RentalDto(rentRequest.getUser(), rentRequest.getCarDto(), false);
         }
     }
 
-    public void returnCar (final RentRequest rentRequest) {
-            iRentalRepository.returnCar(rentRequest.getCarDto());
-        }
+    public void returnCar(final RentRequest rentRequest) {
+        iRentalRepository.returnCar(rentRequest.getCarDto());
+    }
 }
